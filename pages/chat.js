@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../apiClient';
+import apiClient from './apiClient';
 import { createChatCompletion } from 'openai';
 
 const chatClient = createChatCompletion({ httpClient: apiClient });
