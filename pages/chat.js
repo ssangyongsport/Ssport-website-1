@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import apiClient from './apiClient';
-import { createChatCompletion } from 'openai';
+import openai from 'openai';
 
-const chatClient = createChatCompletion({ httpClient: apiClient });
+const chatClient = new openai.ChatCompletion.create({ httpClient: apiClient });
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
