@@ -1,4 +1,4 @@
-import { OpenAIStream, OpenAIStreamPayload } from '@/utils/OpenAIStream'
+import { OpenAIStream, OpenAIStreamPayload } from '.../utils/OpenAIStream'
 
 type RequestData = {
   currentModel: string
