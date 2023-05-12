@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import apiClient from './apiClient';
 import openai from 'openai';
 
-const chatClient = new openai.Completion.create({ httpClient: apiClient });
+const chatClient = new openai.OpenAIApi({
+  apiKey: 'pk-okExSWKrxhHCqHAnLMefSyPOelTPaooGAyukseiRwqPgKoOZ',
+  baseUrl: 'https://api.pawan.krd/v1m',
+});
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -11,9 +14,14 @@ export default function Chat() {
   useEffect(() => {
     // 處理接收到新訊息的邏輯
     async function handleMessageReceived() {
-      const response = await chatClient.create(
-        messages.map((message) => ({ role: message.role, content: message.content }))
-      );
+      const response = await chatClient.complete({
+        model: 'gpt-3.5-turbo',
+        messages: messages.map((message) => ({
+          role: message.role,
+          content: message.content
+        })),
+        maxTokens: 50
+      });
       const message = response.choices[0].text;
       setMessages([...messages, { role: 'assistant', content: message }]);
     }
