@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import apiClient from './apiClient';
+import apiClient from '../apiClient';
 import openai from 'openai';
 
-const chatClient = new openai.OpenAIApi({
+const chatClient = new openai.default({
   apiKey: 'pk-okExSWKrxhHCqHAnLMefSyPOelTPaooGAyukseiRwqPgKoOZ',
   baseUrl: 'https://api.pawan.krd/v1m',
 });
