@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import apiClient from './apiClient';
 import openai from 'openai';
 
-const chatClient = new openai.ChatCompletion.create({ httpClient: apiClient });
+const chatClient = new openai.Completion.create({ httpClient: apiClient });
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -14,7 +14,7 @@ export default function Chat() {
       const response = await chatClient.create(
         messages.map((message) => ({ role: message.role, content: message.content }))
       );
-      const message = response.choices[0].message.content;
+      const message = response.choices[0].text;
       setMessages([...messages, { role: 'assistant', content: message }]);
     }
 
